@@ -37,16 +37,50 @@ foreach ($musicKey as $key => $val) {
     $iString = 0;
     $iDate = 0;
 //    $iTrue = 0;
-
-    //Apple Musicは除外する
-    if (in_array('Apple Music', $propKey)) {
-        continue;
-    }
-
     //id
     if (in_array('Track ID', $propKey)) {
 //        $musicAll[$key]['id'] = @$propInteger[$iInteger];
         $iInteger++;
+    }
+    //名前
+    if (in_array('Name', $propKey)) {
+        $musicAll[$key]['name'] = @$propString[$iString];
+        $iString++;
+    }
+    //アーティスト
+    if (in_array('Artist', $propKey)) {
+        $musicAll[$key]['artist'] = @$propString[$iString];
+        $iString++;
+    }
+    //アルバムアーティスト
+    if (in_array('Album Artist', $propKey)) {
+        $musicAll[$key]['album_artist'] = @$propString[$iString];
+        $iString++;
+    }
+    //作曲者
+    if (in_array('Composer', $propKey)) {
+        $musicAll[$key]['composer'] = @$propString[$iString];
+        $iString++;
+    }
+    //アルバム
+    if (in_array('Album', $propKey)) {
+        $musicAll[$key]['album'] = @$propString[$iString];
+        $iString++;
+    }
+    //グループ
+    if (in_array('Grouping', $propKey)) {
+//        $musicAll[$key]['group'] = @$propString[$iString];
+        $iString++;
+    }
+    //ジャンル
+    if (in_array('Genre', $propKey)) {
+        $musicAll[$key]['genre'] = @$propString[$iString];
+        $iString++;
+    }
+    //種類
+    if (in_array('Kind', $propKey)) {
+//        $musicAll[$key]['kind'] = @$propString[$iString];
+        $iString++;
     }
     //サイズ
     if (in_array('Size', $propKey)) {
@@ -123,6 +157,11 @@ foreach ($musicKey as $key => $val) {
 //        $musicAll[$key]['volume'] = @$propInteger[$iInteger];
         $iInteger++;
     }
+    //コメント
+    if (in_array('Comments', $propKey)) {
+        $musicAll[$key]['comments'] = @$propString[$iString];
+        $iString++;
+    }
     //再生回数
     if (in_array('Play Count', $propKey)) {
         $musicAll[$key]['play_count'] = @$propInteger[$iInteger];
@@ -153,103 +192,13 @@ foreach ($musicKey as $key => $val) {
         $musicAll[$key]['rate'] = @$propInteger[$iInteger];
         $iInteger++;
     }
-    //アルバムレート
-    if (in_array('Album Rating', $propKey)) {
-//        $musicAll[$key]['album_rate'] = @$propInteger[$iInteger];
-        $iInteger++;
-    }
+    //Album Rating
     //Album Rating Computed
-    //Loved
     //Compilation
     //Artwork Count
-    if (in_array('Artwork Count', $propKey)) {
-//        $musicAll[$key]['artwork_count'] = @$propInteger[$iInteger];
-        $iInteger++;
-    }
-    //Persistent ID
-    if (in_array('Persistent ID', $propKey)) {
-//        $musicAll[$key]['persistent_id'] = @$propString[$iString];
-        $iString++;
-    }
-    //再生チェック, true or falseなので
-    if (in_array('Disabled', $propKey)) {
-        $musicAll[$key]['disabled'] = true;
-    } else {
-        $musicAll[$key]['disabled'] = false;
-    }
-    //Track Type
-    if (in_array('Track Type', $propKey)) {
-//        $musicAll[$key]['track_type'] = @$propString[$iString];
-        $iString++;
-    }
-    //File Folder Count
-    if (in_array('File Folder Count', $propKey)) {
-//        $musicAll[$key]['file_folder_count'] = @$propInteger[$iInteger];
-        $iInteger++;
-    }
-    //Library Folder Count
-    if (in_array('Library Folder Count', $propKey)) {
-//        $musicAll[$key]['library_folder_count'] = @$propInteger[$iInteger];
-        $iInteger++;
-    }
-    //名前
-    if (in_array('Name', $propKey)) {
-        $musicAll[$key]['name'] = @$propString[$iString];
-        $iString++;
-    }
-    //アーティスト
-    if (in_array('Artist', $propKey)) {
-        $musicAll[$key]['artist'] = @$propString[$iString];
-        $iString++;
-    }
-    //アルバムアーティスト
-    if (in_array('Album Artist', $propKey)) {
-        $musicAll[$key]['album_artist'] = @$propString[$iString];
-        $iString++;
-    }
-    //作曲者
-    if (in_array('Composer', $propKey)) {
-        $musicAll[$key]['composer'] = @$propString[$iString];
-        $iString++;
-    }
-    //アルバム
-    if (in_array('Album', $propKey)) {
-        $musicAll[$key]['album'] = @$propString[$iString];
-        $iString++;
-    }
-    //グループ
-    if (in_array('Grouping', $propKey)) {
-//        $musicAll[$key]['group'] = @$propString[$iString];
-        $iString++;
-    }
-    //ジャンル
-    if (in_array('Genre', $propKey)) {
-        $musicAll[$key]['genre'] = @$propString[$iString];
-        $iString++;
-    }
-    //種類
-    if (in_array('Kind', $propKey)) {
-//        $musicAll[$key]['kind'] = @$propString[$iString];
-        $iString++;
-    }
-    //コメント
-    if (in_array('Comments', $propKey)) {
-        $musicAll[$key]['comments'] = @$propString[$iString];
-        $iString++;
-    }
-    //名前読み
-    if (in_array('Sort Name', $propKey)) {
-        $musicAll[$key]['kana'] = @$propString[$iString];
-        $iString++;
-    }
     //アルバム読み
     if (in_array('Sort Album', $propKey)) {
         $musicAll[$key]['album_kana'] = @$propString[$iString];
-        $iString++;
-    }
-    //アーティスト読み
-    if (in_array('Sort Artist', $propKey)) {
-        $musicAll[$key]['artist_kana'] = @$propString[$iString];
         $iString++;
     }
     //アルバムアーティスト読み
@@ -257,16 +206,32 @@ foreach ($musicKey as $key => $val) {
         $musicAll[$key]['album_artist_kana'] = @$propString[$iString];
         $iString++;
     }
+    //アーティスト読み
+    if (in_array('Sort Artist', $propKey)) {
+        $musicAll[$key]['artist_kana'] = @$propString[$iString];
+        $iString++;
+    }
     //作曲者読み
     if (in_array('Sort Composer', $propKey)) {
         $musicAll[$key]['composer_kana'] = @$propString[$iString];
         $iString++;
     }
-    //ファイル場所
-    if (in_array('Location', $propKey)) {
-//        $musicAll[$key]['location'] = @$propString[$iString];
+    //名前読み
+    if (in_array('Sort Name', $propKey)) {
+        $musicAll[$key]['kana'] = @$propString[$iString];
         $iString++;
     }
+    //Persistent ID
+    //再生チェック, true or falseなので
+    if (in_array('Disabled', $propKey)) {
+        $musicAll[$key]['disabled'] = true;
+    } else {
+        $musicAll[$key]['disabled'] = false;
+    }
+    //Track Type
+    //Location
+    //File Folder Count
+    //Library Folder Count
 }
 
 
